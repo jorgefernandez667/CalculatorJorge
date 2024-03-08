@@ -13,11 +13,15 @@ import java.awt.event.ActionListener;
  * @author ferna
  */
 public class CalculatorJorge2 extends JFrame implements ActionListener {
+    /*aqui declaro 4 objetos*/
+    /*3 son lineas de entrada y salida*/
+    /*1 es de tip tabla*/
     private JTextField num1Field, num2Field, resultadoField;
     private JComboBox<String> operaciones;
     
+    /*aqui creo el constructor donde se crea la ventana y sus objetos*/
     public CalculatorJorge2() {
-        
+         
         setTitle("Calculadora");
         setSize(300, 150);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -42,19 +46,21 @@ public class CalculatorJorge2 extends JFrame implements ActionListener {
         JButton calcularButton = new JButton("Calcular");
         calcularButton.addActionListener(this);
 
-        // Agregar componentes a la ventana
+        
         add(numerosPanel);
         add(operacionPanel);
         add(calcularButton);
         add(resultadoField);
 
-        
+        /*aqui vuelve visible la ventana*/
         setVisible(true);
     }
 
   
     @Override
+    /*aqui se crea la logica de la tabla de operaciones y los calculos*/
     public void actionPerformed(ActionEvent e) {
+/*aqui uso try para que solo reciba numeros para los calculos y cuando recibe una letra o un caracter no valido lo manda a catch*/ 
 try {
         double num1 = Double.parseDouble(num1Field.getText());
         double num2 = Double.parseDouble(num2Field.getText());
@@ -75,6 +81,7 @@ try {
                 if (num2 != 0) {
                     resultado = num1 / num2;
                 } else {
+                    /*aqui suela el error si quiere dividir entre 0*/
                     JOptionPane.showMessageDialog(this, "Error: división por cero", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
@@ -89,6 +96,7 @@ try {
 
   
     public static void main(String[] args) {
+        /*Utilice SwingUtilities.invokeLater() para asegurar de que la creación de la interfaz gráfica se realice en el hilo de eventos de Swing.*/
         SwingUtilities.invokeLater(CalculatorJorge2::new);
     }
 }
